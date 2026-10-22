@@ -109,7 +109,7 @@ if (botonIntentar) {
     const destino = modoParticipacion === 'database'
       ? 'se guardarán en la base de datos del estudio y podrán ser consultados por su administrador'
       : 'se enviarán al correo del administrador del estudio';
-    document.querySelector('#aviso-modal').textContent = 'Esto es una simulación educativa de phishing. Si aceptás, tu nombre y apellido ' + destino + ' para identificar tu participación. Podés cerrar con la X o Escape sin enviar datos.';
+    document.querySelector('#aviso-modal').textContent = 'Actividad académica voluntaria. Si aceptás, tu nombre y apellido ' + destino + ' para identificar tu participación. Podés cerrar con la X o Escape sin enviar datos.';
     document.querySelector('#texto-consentimiento').textContent = modoParticipacion === 'database'
       ? 'Acepto que mi nombre y apellido se guarden en la base de datos del estudio para identificar mi participación y sean consultados por su administrador.'
       : 'Acepto enviar mi nombre y apellido al correo del administrador del estudio para identificar mi participación.';
