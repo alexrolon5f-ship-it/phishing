@@ -137,7 +137,7 @@ app.get('/api/admin/resumen', async (_req, res) => {
       const [filas] = database.dialect === 'postgres'
         ? await database.execute('SELECT variante, encuesta::jsonb ->> ? AS respuesta, COUNT(*) cantidad FROM sesiones_demo WHERE encuesta IS NOT NULL AND encuesta::jsonb ->> ? IS NOT NULL GROUP BY variante, respuesta', [pregunta.id,pregunta.id])
         : await database.execute('SELECT variante, JSON_UNQUOTE(JSON_EXTRACT(encuesta, ?)) respuesta, COUNT(*) cantidad FROM sesiones_demo WHERE encuesta IS NOT NULL AND JSON_EXTRACT(encuesta, ?) IS NOT NULL GROUP BY variante, respuesta', ['$.'+pregunta.id, '$.'+pregunta.id]);
-      return { ...pregunta, filas };
+      return { ...pregunta, filas: filas.filter(fila => Object.hasOwn(pregunta.opciones, fila.respuesta)) };
     }));
     res.json({ grupos, explicaciones, razones, opcionesMotivos, cuestionario, modoParticipacion: modo, anteriores: Number(anteriores[0].total), actualizado: new Date().toISOString() });
   } catch (_) { res.status(503).json({ error: 'No se pudieron cargar los contadores. Revisá la conexión con la base de datos.' }); }
