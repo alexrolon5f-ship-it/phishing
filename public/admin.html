@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script src="/js/tema.js?v=1"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observatorio · Administración</title>
+<link rel="stylesheet" href="/css/admin.css"><script src="/js/admin.js?v=cloud-1" defer></script>
+<link rel="stylesheet" href="/css/tema.css?v=1">
+</head>
+<body>
+<main>
+<div class="admin-university-logo"><img src="/images/uninorte.png" alt="UniNorte" width="2108" height="562"></div>
+<header><div><p class="eyebrow">ESTUDIO DE INGENIERÍA SOCIAL</p><h1>Observatorio<span>.</span></h1><p class="muted">Resultados de la simulación educativa</p></div><div class="controls"><span class="badge">● Administrador</span><button id="actualizar">Actualizar</button><button id="salir">Salir</button></div></header>
+<section class="intro"><div><p class="eyebrow">PARTICIPACIÓN REGISTRADA</p><h2>Dos versiones. Una comparación.</h2><p>Seguí el recorrido desde la vista del mensaje hasta el envío voluntario.</p></div><span class="pill">IA / Tradicional</span></section>
+<p id="estado" role="status" aria-live="polite">Cargando resultados…</p>
+<section class="cards" aria-label="Contadores de envíos">
+<article class="card total"><p>Participaciones completadas · Total</p><strong id="total">—</strong><small>Sesiones con participación registrada</small></article>
+<article class="card"><p><span class="dot ia"></span> Versión IA</p><strong id="ia">—</strong><small>Participaciones completadas</small></article>
+<article class="card"><p><span class="dot tradicional"></span> Versión tradicional</p><strong id="tradicional">—</strong><small>Participaciones completadas</small></article>
+</section>
+<section class="panel" style="margin-top:22px"><p class="eyebrow">IDENTIFICACIÓN DEL MENSAJE</p><h2>¿Reconocieron la versión?</h2><strong id="precision" style="font-size:38px">—</strong><p id="precision-detalle" class="muted">Esperando respuestas</p><p class="muted">Aciertos entre quienes respondieron la pregunta final. La comparación usa la etiqueta asignada a cada versión.</p></section><section class="details"><article class="panel"><p class="eyebrow">COMPARACIÓN</p><h2>Participaciones por versión</h2><p class="muted">Porcentaje de las sesiones que vieron cada mensaje.</p><div id="barras"></div></article>
+<article class="panel"><p class="eyebrow">RECORRIDO COMPLETO</p><h2>De la vista a la participación</h2><div class="table-wrap"><table><thead><tr><th>Acción</th><th>IA</th><th>Tradicional</th><th>Total</th></tr></thead><tbody id="tabla"></tbody></table></div></article></section>
+<section class="panel" style="margin-top:22px"><p class="eyebrow">CUESTIONARIO FINAL · PREGUNTAS 1 A 6</p><h2>Percepciones y respuestas</h2><p class="muted">Son opiniones y acciones declaradas después de la simulación. No prueban por sí solas que la IA convenza más ni miden un cambio de aprendizaje. Cada pregunta usa como base sus propias respuestas registradas. Las sesiones que no respondieron esa pregunta se excluyen de su porcentaje.</p><div id="cuestionario-estadisticas"></div></section><section class="panel" id="panel-participantes" hidden style="margin-top:22px"><p class="eyebrow">ACCESO PRIVADO</p><h2>Participaciones registradas</h2><p class="muted">Nombres y apellidos guardados con consentimiento. Solo visibles para el administrador.</p><div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Apellido</th><th>Versión</th><th>Fecha</th></tr></thead><tbody id="participantes"></tbody></table></div><div class="controls"><button id="pagina-anterior">Anterior</button><span id="pagina-participantes"></span><button id="pagina-siguiente">Siguiente</button></div><p id="estado-participantes" role="status"></p></section><footer><p>Una sesión cuenta una sola vez por acción. No equivale a alumnos únicos ni demuestra por sí sola que una persona creyera el mensaje.</p><p id="historico"></p><p>En el modo de guardado en base de datos, la lista de participantes es privada. Actualización automática cada 15 segundos.</p><a href="/demo.html">Abrir simulación ↗</a></footer>
+</main>
+</body></html>
+
+
+
+
+

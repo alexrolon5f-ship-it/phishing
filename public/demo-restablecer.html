@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+<script src="/js/tema.js?v=1"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centro de seguridad simulado</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/demo.js?v=cloud-1" defer></script>
+  <link rel="stylesheet" href="/css/tema.css?v=1">
+</head>
+  <body class="demo-page">
+    <main class="demo-shell">
+      <h1>Centro de seguridad simulado</h1>
+      <div class="message-card message-body">
+        <p>Para restablecer tu contraseña, pulsá el botón siguiente.</p>
+        <button id="intentar-restablecer" type="button">Intentar restablecer</button>
+        <p id="estado-demo" class="demo-status" role="status" aria-live="polite"></p>
+        <div id="explicacion-demo" hidden>
+          <h2 id="titulo-explicacion" tabindex="-1">Esto fue una simulación de phishing</h2>
+          <p>Un mensaje que genera preocupación por tu cuenta puede llevarte a abrir un enlace y completar un formulario sin comprobar quién lo envió.</p>
+          <p id="resultado-envio">No se modificó ninguna cuenta. El envío de nombre y apellido es voluntario y requiere tu consentimiento.</p>
+          <p>Antes de ingresar datos, revisá el remitente y la dirección del sitio. Ante una alerta, abrí el portal oficial de tu institución por tu cuenta y consultá al soporte por un canal conocido.</p>
+          <p>La finalidad de esta actividad es aprender a reconocer estas señales, sin culpar a quien participa.</p>
+          <form id="formulario-opinion">
+            <fieldset>
+              <legend>1. ¿Creés que este mensaje fue elaborado de forma tradicional o con IA?</legend>
+              <p>Este cuestionario de seis preguntas es voluntario. Si decidís enviarlo, respondé las seis. Tus elecciones se usarán para el análisis estadístico.</p>
+              <label><input type="radio" name="opinion" value="tradicional" required> Tradicional</label>
+              <label><input type="radio" name="opinion" value="ia" required> Con inteligencia artificial</label>
+              <div class="pregunta-encuesta" role="group" aria-labelledby="etiqueta-motivo" aria-describedby="ayuda-motivo">
+                <h3 id="etiqueta-motivo">2. ¿Qué detalles te hicieron elegir esa opción?</h3>
+                <small id="ayuda-motivo">Marcá una o varias opciones. Se guardarán junto con tu elección.</small>
+                <label><input type="checkbox" name="motivos" value="ortografia"> La ortografía y la puntuación</label>
+                <label><input type="checkbox" name="motivos" value="vocabulario"> Las palabras utilizadas</label>
+                <label><input type="checkbox" name="motivos" value="tono"> El tono o la formalidad</label>
+                <label><input type="checkbox" name="motivos" value="estructura"> La organización del mensaje</label>
+                <label><input type="checkbox" name="motivos" value="detalle"> El nivel de detalle</label>
+                <label><input type="checkbox" name="motivos" value="intuicion"> Mi intuición, sin una señal concreta</label>
+              </div>
+              <section class="pregunta-encuesta" role="group" aria-labelledby="titulo-realismo"><h3 id="titulo-realismo">3. En general, ¿creés que un mensaje de phishing generado con IA puede parecer más auténtico y convincente que uno elaborado sin IA?</h3><p>Respondé según tu percepción general; no hace falta haber visto ambas versiones.</p><label><input type="radio" name="realismo" value="total_desacuerdo" required> Totalmente en desacuerdo</label>
+<label><input type="radio" name="realismo" value="desacuerdo" required> En desacuerdo</label>
+<label><input type="radio" name="realismo" value="neutral" required> Ni de acuerdo ni en desacuerdo</label>
+<label><input type="radio" name="realismo" value="acuerdo" required> De acuerdo</label>
+<label><input type="radio" name="realismo" value="total_acuerdo" required> Totalmente de acuerdo</label>
+<label><input type="radio" name="realismo" value="no_se" required> No sé / No tengo información suficiente</label></section>
+<section class="pregunta-encuesta" role="group" aria-labelledby="titulo-credibilidad"><h3 id="titulo-credibilidad">4. Antes de saber que era una simulación, ¿qué tan auténtico te pareció el mensaje?</h3><label><input type="radio" name="credibilidad" value="nada" required> Nada auténtico</label>
+<label><input type="radio" name="credibilidad" value="poco" required> Poco auténtico</label>
+<label><input type="radio" name="credibilidad" value="moderado" required> Moderadamente auténtico</label>
+<label><input type="radio" name="credibilidad" value="bastante" required> Bastante auténtico</label>
+<label><input type="radio" name="credibilidad" value="muy" required> Muy auténtico</label>
+<label><input type="radio" name="credibilidad" value="sabia" required> Ya sabía que era una simulación</label>
+<label><input type="radio" name="credibilidad" value="no_recuerdo" required> No lo recuerdo</label></section>
+<section class="pregunta-encuesta" role="group" aria-labelledby="titulo-accion"><h3 id="titulo-accion">5. Si recibieras una alerta similar sobre tu cuenta, ¿qué harías primero?</h3><label><input type="radio" name="accion" value="enlace" required> Abrir el enlace del mensaje para revisar la cuenta</label>
+<label><input type="radio" name="accion" value="responder" required> Responder al remitente para pedir más información</label>
+<label><input type="radio" name="accion" value="oficial" required> Entrar por mi cuenta al portal oficial o consultar a soporte por un canal conocido</label>
+<label><input type="radio" name="accion" value="ignorar" required> Ignorar o eliminar el mensaje sin verificarlo</label>
+<label><input type="radio" name="accion" value="no_se" required> No sabría qué hacer</label></section>
+<section class="pregunta-encuesta" role="group" aria-labelledby="titulo-preparacion"><h3 id="titulo-preparacion">6. Después de esta actividad, ¿qué tan preparado/a te sentís para reconocer un mensaje de phishing?</h3><label><input type="radio" name="preparacion" value="nada" required> Nada preparado/a</label>
+<label><input type="radio" name="preparacion" value="poco" required> Poco preparado/a</label>
+<label><input type="radio" name="preparacion" value="moderado" required> Moderadamente preparado/a</label>
+<label><input type="radio" name="preparacion" value="bastante" required> Bastante preparado/a</label>
+<label><input type="radio" name="preparacion" value="muy" required> Muy preparado/a</label></section>
+            </fieldset>
+            <button type="submit">Guardar mis respuestas</button>
+            <p id="estado-opinion" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+      <p><a href="/demo.html">Volver al mensaje</a></p>
+      <img class="demo-footer-logo" src="/images/uninorte.png" alt="UniNorte" width="2108" height="562">
+    </main>
+    <dialog id="modal-datos" aria-labelledby="titulo-modal" aria-describedby="aviso-modal">
+      <button type="button" id="cerrar-modal" aria-label="Cerrar formulario" title="Cerrar">×</button>
+      <form id="formulario-demo" autocomplete="off">
+        <h2 id="titulo-modal">Participación voluntaria en la simulación</h2>
+        <p id="aviso-modal">Cargando la información sobre el tratamiento de tus datos…</p>
+        <label for="nombre-demo">Nombre</label>
+        <input id="nombre-demo" type="text" maxlength="80" required autofocus>
+        <label for="apellido-demo">Apellido</label>
+        <input id="apellido-demo" type="text" maxlength="80" required>
+        <label class="consentimiento-demo" for="consentimiento-demo">
+          <input id="consentimiento-demo" type="checkbox" required>
+          <span id="texto-consentimiento">Esperá a que se cargue la información del estudio.</span>
+        </label>
+        <p id="estado-envio" role="status" aria-live="polite"></p>
+        <div class="modal-acciones">
+          <button type="submit" id="enviar-participacion" disabled>Enviar y ver explicación</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
+
+
+
+

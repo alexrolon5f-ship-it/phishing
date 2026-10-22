@@ -1,0 +1,9 @@
+node_modules/
+data/
+.env
+.local-backups/
+.env.*
+!.env.example
+*.log
+*.sql.gz
+*.sql.zip

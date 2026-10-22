@@ -1,0 +1,50 @@
+[
+  {
+    "id": "realismo",
+    "titulo": "3. En general, ¿creés que un mensaje de phishing generado con IA puede parecer más auténtico y convincente que uno elaborado sin IA?",
+    "nota": "Respondé según tu percepción general; no hace falta haber visto ambas versiones.",
+    "opciones": {
+      "total_desacuerdo": "Totalmente en desacuerdo",
+      "desacuerdo": "En desacuerdo",
+      "neutral": "Ni de acuerdo ni en desacuerdo",
+      "acuerdo": "De acuerdo",
+      "total_acuerdo": "Totalmente de acuerdo",
+      "no_se": "No sé / No tengo información suficiente"
+    }
+  },
+  {
+    "id": "credibilidad",
+    "titulo": "4. Antes de saber que era una simulación, ¿qué tan auténtico te pareció el mensaje?",
+    "opciones": {
+      "nada": "Nada auténtico",
+      "poco": "Poco auténtico",
+      "moderado": "Moderadamente auténtico",
+      "bastante": "Bastante auténtico",
+      "muy": "Muy auténtico",
+      "sabia": "Ya sabía que era una simulación",
+      "no_recuerdo": "No lo recuerdo"
+    }
+  },
+  {
+    "id": "accion",
+    "titulo": "5. Si recibieras una alerta similar sobre tu cuenta, ¿qué harías primero?",
+    "opciones": {
+      "enlace": "Abrir el enlace del mensaje para revisar la cuenta",
+      "responder": "Responder al remitente para pedir más información",
+      "oficial": "Entrar por mi cuenta al portal oficial o consultar a soporte por un canal conocido",
+      "ignorar": "Ignorar o eliminar el mensaje sin verificarlo",
+      "no_se": "No sabría qué hacer"
+    }
+  },
+  {
+    "id": "preparacion",
+    "titulo": "6. Después de esta actividad, ¿qué tan preparado/a te sentís para reconocer un mensaje de phishing?",
+    "opciones": {
+      "nada": "Nada preparado/a",
+      "poco": "Poco preparado/a",
+      "moderado": "Moderadamente preparado/a",
+      "bastante": "Bastante preparado/a",
+      "muy": "Muy preparado/a"
+    }
+  }
+]

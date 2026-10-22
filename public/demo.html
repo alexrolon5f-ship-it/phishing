@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head>
+<script src="/js/tema.js?v=1"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vista previa de mensaje de seguridad</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/demo.js?v=cloud-1" defer></script>
+  <link rel="stylesheet" href="/css/tema.css?v=1">
+</head>
+  <body class="demo-page">
+    <main class="demo-shell">
+      <p class="demo-label">Vista previa local de la investigación</p>
+      <h1>Mensaje de alerta simulado</h1>
+      <p>Esta pantalla permite probar el recorrido antes de usarlo en un estudio autorizado.</p>
+
+      <article class="message-card" aria-labelledby="demo-asunto" hidden>
+        <div class="message-header">
+          <p><strong>De:</strong> Equipo de seguridad &lt;info@unimorte.edu.py&gt;</p>
+          <p><strong>Asunto:</strong> <span id="asunto-mensaje">Revisá una actividad reciente en tu cuenta académica</span></p>
+        </div>
+        <div class="message-body">
+          <h2 id="demo-asunto">Actividad reciente en tu cuenta</h2>
+          <p>Hola:</p>
+          <p id="texto-mensaje">Se detectó un intento de acceso a tu cuenta académica desde un dispositivo que no reconocemos. Si no fuiste vos, revisá la actividad de la cuenta para conocer los pasos de protección.</p>
+          <p id="firma-mensaje">Equipo de seguridad del campus de ejemplo</p>
+          <button id="revisar-actividad" type="button">Revisar actividad</button>
+          <p id="estado-demo" class="demo-status" role="status" aria-live="polite"></p>
+          <img class="demo-footer-logo" src="/images/uninorte.png" alt="UniNorte" width="2108" height="562">
+        </div>
+      </article>
+      <p><a href="/demo-resultados.html">Ver conteos de la demo</a></p>
+    </main>
+  </body>
+</html>
+
+
+
+

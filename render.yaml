@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: simulacion-educativa
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "24"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: PARTICIPATION_MODE
+        value: database
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_SALT
+        sync: false
+      - key: ADMIN_HASH
+        sync: false
