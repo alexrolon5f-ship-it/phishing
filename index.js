@@ -1,3 +1,4 @@
+const { configurarCorreoHttp } = require('./correo-http');
 const express = require('express');
 const path = require('node:path');
 const { crearBase } = require('./database');
@@ -9,7 +10,7 @@ const preguntasEncuesta = require('./preguntas-encuesta.json');
 function crearApp(database, env = process.env) {
 const app = express();
 const modo = env.PARTICIPATION_MODE || (env.DATABASE_URL ? 'database' : 'email');
-if (!['database','email'].includes(modo)) throw new Error('PARTICIPATION_MODE no válido');
+if (!['database','database_email','email'].includes(modo)) throw new Error('PARTICIPATION_MODE no válido');
 app.disable('x-powered-by');
 if (env.TRUST_PROXY === '1') app.set('trust proxy', 1);
 app.use((req,res,next) => {
@@ -37,7 +38,7 @@ app.post('/api/participacion-voluntaria', async (req, res, next) => {
     if (!filas.length || filas[0].variante !== variante) return res.status(400).json({ error: 'Volvé al mensaje y recargá la página para registrar tu sesión.' });
     next();
   } catch (_) { res.status(503).json({ error: 'No se pudo verificar la sesión. Intentá nuevamente.' }); }
-}, modo === 'database' ? crearManejadorParticipacion(database) : crearManejadorCorreo({ ...configurarCorreo(env), registrarEnvio: (body) => registrarContador(database, body.sesionId, body.variante, 'enviado') }));
+}, modo !== 'email' ? crearManejadorParticipacion(database, {modo, notificar: configurarCorreoHttp(env)}) : crearManejadorCorreo({ ...configurarCorreo(env), registrarEnvio: (body) => registrarContador(database, body.sesionId, body.variante, 'enviado') }));
 
 app.post('/api/respuestas', async (request, response) => {
   const { mensajeId, clasificacion, confianza } = request.body ?? {};

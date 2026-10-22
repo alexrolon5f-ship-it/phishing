@@ -104,13 +104,17 @@ if (botonIntentar) {
   fetch('/api/configuracion', {cache:'no-store'}).then(async respuesta => {
     if (!respuesta.ok) throw new Error('No se pudo cargar la información del estudio. Recargá la página.');
     const config = await respuesta.json();
-    if (!['database','email'].includes(config.modoParticipacion)) throw new Error('Configuración de participación no válida.');
+    if (!['database','database_email','email'].includes(config.modoParticipacion)) throw new Error('Configuración de participación no válida.');
     modoParticipacion = config.modoParticipacion;
-    const destino = modoParticipacion === 'database'
+    const destino = modoParticipacion === 'database_email'
+      ? 'se guardarán en la base de datos del estudio y se enviarán por correo a su administrador'
+      : modoParticipacion === 'database'
       ? 'se guardarán en la base de datos del estudio y podrán ser consultados por su administrador'
       : 'se enviarán al correo del administrador del estudio';
     document.querySelector('#aviso-modal').textContent = 'Actividad académica voluntaria. Si aceptás, tu nombre y apellido ' + destino + ' para identificar tu participación. Podés cerrar con la X o Escape sin enviar datos.';
-    document.querySelector('#texto-consentimiento').textContent = modoParticipacion === 'database'
+    document.querySelector('#texto-consentimiento').textContent = modoParticipacion === 'database_email'
+      ? 'Acepto que mi nombre y apellido se guarden en la base de datos del estudio y se envíen por correo a su administrador para identificar mi participación.'
+      : modoParticipacion === 'database'
       ? 'Acepto que mi nombre y apellido se guarden en la base de datos del estudio para identificar mi participación y sean consultados por su administrador.'
       : 'Acepto enviar mi nombre y apellido al correo del administrador del estudio para identificar mi participación.';
     enviar.disabled = false;

@@ -9,8 +9,8 @@ async function cargar() {
   if (respuesta.status === 401) { location.replace('/admin-login.html'); return; }
   if (!respuesta.ok) throw new Error(respuesta.status === 401 ? 'Ingresá de nuevo con tu cuenta de administrador.' : 'No se pudieron cargar los datos. Revisá el servidor y MySQL.');
   const datos = await respuesta.json();
-  document.querySelector('#panel-participantes').hidden = datos.modoParticipacion !== 'database';
-  if (datos.modoParticipacion === 'database') await cargarParticipantes();
+  document.querySelector('#panel-participantes').hidden = !['database','database_email'].includes(datos.modoParticipacion);
+  if (['database','database_email'].includes(datos.modoParticipacion)) await cargarParticipantes();
   const cuestionario = document.querySelector('#cuestionario-estadisticas'); cuestionario.replaceChildren();
   const preguntaOrigen = {
    titulo: '1. ¿Creés que este mensaje fue elaborado de forma tradicional o con IA?',

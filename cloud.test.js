@@ -5,6 +5,50 @@ const { PGlite } = require('@electric-sql/pglite');
 const { adaptarPostgres } = require('./database');
 const { prepararContadores } = require('./admin');
 const { crearApp } = require('./index');
+const { crearManejadorParticipacion } = require('./participacion');
+const { configurarCorreoHttp } = require('./correo-http');
+
+test('Correo HTTPS: destino fijo, consentimiento, persistencia y sin duplicados', async () => {
+  const pg = new PGlite();
+  const db = adaptarPostgres(pg);
+  db.transaction = fn => pg.transaction(tx => fn(adaptarPostgres(tx)));
+  try {
+    await prepararContadores(db);
+    let llamadas = 0, fallo = false;
+    const notificar = configurarCorreoHttp({RESEND_API_KEY:'clave-ficticia',NOTIFICATION_TO:'admin@example.invalid'}, async (url, opts) => {
+      llamadas++;
+      assert.equal(url,'https://api.resend.com/emails');
+      const body = JSON.parse(opts.body);
+      assert.deepEqual(body.to,['admin@example.invalid']);
+      assert.match(body.subject,/IA|Tradicional/);
+      assert.match(body.text,/Nombre: Persona/);
+      assert.match(opts.headers['Idempotency-Key'],/^participacion\//);
+      return {ok:!fallo,status:fallo?429:200,json:async()=>({id:'correo-ficticio'})};
+    });
+    const handler = crearManejadorParticipacion(db,{modo:'database_email',notificar});
+    const ejecutar = async body => {
+      const res={code:200,status(c){this.code=c;return this},json(data){this.data=data;return this}};
+      await handler({body},res); return res;
+    };
+    const sesionId=randomUUID();
+    await db.execute('INSERT INTO sesiones_demo (sesion_id,variante) VALUES (?,?)',[sesionId,'ia']);
+    const body={sesionId,variante:'ia',nombre:'Persona',apellido:'Ficticia',consentimiento:true,destinoConsentido:'database_email'};
+    assert.equal((await ejecutar({...body,destinoConsentido:'database'})).code,400);
+    assert.equal(llamadas,0);
+    fallo=true;
+    assert.equal((await ejecutar(body)).code,502);
+    assert.equal((await db.query('SELECT * FROM participaciones'))[0].length,1);
+    fallo=false;
+    assert.equal((await ejecutar(body)).code,200);
+    assert.equal((await ejecutar(body)).code,200);
+    assert.equal(llamadas,2);
+    const anterior=randomUUID();
+    await db.execute('INSERT INTO sesiones_demo (sesion_id,variante) VALUES (?,?)',[anterior,'ia']);
+    await db.execute('INSERT INTO participaciones (sesion_id,nombre,apellido,consentimiento_version) VALUES (?,?,?,?)',[anterior,'Persona','Ficticia','database-v1']);
+    assert.equal((await ejecutar({...body,sesionId:anterior})).code,502);
+    assert.equal(llamadas,2);
+  } finally {await pg.close();}
+});
 
 test('PostgreSQL: recorrido completo sin SMTP, privacidad, duplicados y seis preguntas', async () => {
   const pg = new PGlite();

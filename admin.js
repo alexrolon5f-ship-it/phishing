@@ -78,6 +78,7 @@ async function prepararContadores(db) {
     fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sesion_id) REFERENCES sesiones_demo(sesion_id)
   )`);
+  await db.query("ALTER TABLE participaciones ADD COLUMN IF NOT EXISTS correo_id VARCHAR(100)");
 }
 
 async function registrarContador(db, sesionId, variante, evento) {

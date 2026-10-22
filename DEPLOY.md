@@ -26,4 +26,10 @@ No publiques archivos .env, cadenas de conexión, archivos privados de acceso ni
 
 Las pruebas `npm test` usan PostgreSQL en memoria y correo simulado, sin enviar mensajes ni conectarse a Neon.
 
+## Notificaciones por correo
+
+Para conservar el registro y enviar nombre/apellido y variante al administrador, cambiá PARTICIPATION_MODE a `database_email` y agregá RESEND_API_KEY y NOTIFICATION_TO en Render. RESEND_FROM es opcional; por defecto es `onboarding@resend.dev`, limitado a pruebas hacia el correo de la propia cuenta Resend. Para otros destinatarios o un remitente propio, verificá un dominio en Resend y configurá RESEND_FROM. No uses una contraseña Gmail como API key.
+
+El formulario informa que los datos se guardan y se envían por correo. Los registros anteriores que solo autorizaron almacenamiento no se envían. La aceptación del proveedor no garantiza entrega en la bandeja de entrada. Si falla el envío, los datos permanecen en el panel y el formulario informa el fallo. La clave de idempotencia del proveedor y el identificador guardado evitan duplicados en reintentos normales. Las seis preguntas siguen disponibles en el panel; el correo contiene nombre, apellido y variante.
+
 Documentación: [Render Web Services](https://render.com/docs/web-services), [condiciones del plan gratuito](https://render.com/docs/free), [conexiones de Neon](https://neon.com/docs/connect/connect-from-any-app).
